@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEREGAMES</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f0f0f;
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: #1a1a1a;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin: 0;
+            color: #00ffcc;
+        }
+
+        .description {
+            max-width: 700px;
+            margin: 30px auto;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .games {
+            padding: 40px;
+        }
+
+        .games h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #00ffcc;
+        }
+
+        .game-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .game-card {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
+            background: #222;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>KEREGAMES</h1>
+</header>
+
+<div class="description">
+    <p>Burada göstereceğini kesinti, sonra benden GTA 6 yapmamı bekleme:</p>
+    <ul style="list-style: none; padding: 0;">
+        <li>- 7/5/3/2 günde yapılan oyunlar.</li>
+        <li>- Sadece videolar için geliştirilmiş özel oyunlar.</li>
+        <li>- Toplulukla geliştirilmiş oyunlar.</li>
+        <li>- Nadiren ticari projeler.</li>
+    </ul>
+</div>
+
+<div class="games">
+    <h2>Oyunlar</h2>
+    <div class="game-list">
+        <div class="game-card">Oyun 1</div>
+        <div class="game-card">Oyun 2</div>
+        <div class="game-card">Oyun 3</div>
+        <div class="game-card">Oyun 4</div>
+    </div>
+</div>
+
+</body>
+</html>
