@@ -26,7 +26,7 @@ h1 {
 /* AÇIKLAMA */
 .description {
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
     max-width: 800px;
     margin: auto;
 }
@@ -43,6 +43,7 @@ h1 {
     background: #1a1a1a;
     padding: 25px;
     border-radius: 15px;
+    text-align: center;
     transition: 0.3s;
 }
 
@@ -57,9 +58,9 @@ h1 {
     padding: 10px 20px;
     background: #00ffcc;
     color: black;
-    text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
+    cursor: pointer;
 }
 </style>
 </head>
@@ -83,30 +84,82 @@ h1 {
 <div class="games">
 
     <div class="game-card">
-        <h2>Kare Kaçırma</h2>
-        <p>Refleks oyunu, kareyi yakala!</p>
-        <a class="btn" href="oyun1.html" download>⬇ HTML indir</a>
+        <h2>Oyun 1</h2>
+        <div class="btn" onclick="indir('Oyun1')">⬇ İndir</div>
     </div>
 
     <div class="game-card">
-        <h2>Hızlı Tıkla</h2>
-        <p>En hızlı kim tıklıyor?</p>
-        <a class="btn" href="oyun2.html" download>⬇ HTML indir</a>
+        <h2>Oyun 2</h2>
+        <div class="btn" onclick="indir('Oyun2')">⬇ İndir</div>
     </div>
 
     <div class="game-card">
-        <h2>Mini Challenge</h2>
-        <p>Küçülen hedefler!</p>
-        <a class="btn" href="oyun3.html" download>⬇ HTML indir</a>
+        <h2>Oyun 3</h2>
+        <div class="btn" onclick="indir('Oyun3')">⬇ İndir</div>
     </div>
 
     <div class="game-card">
-        <h2>Impossible Click</h2>
-        <p>Sinir bozucu zor mod 😈</p>
-        <a class="btn" href="oyun4.html" download>⬇ HTML indir</a>
+        <h2>Oyun 4</h2>
+        <div class="btn" onclick="indir('Oyun4')">⬇ İndir</div>
     </div>
 
 </div>
+
+<script>
+function indir(name) {
+
+let oyunKodu = `
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>${name}</title>
+<style>
+body { margin:0; background:black; overflow:hidden; }
+#box {
+    width:80px;
+    height:80px;
+    position:absolute;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div id="box"></div>
+
+<script>
+let box = document.getElementById("box");
+
+function renk() {
+    return "#" + Math.floor(Math.random()*16777215).toString(16);
+}
+
+function move() {
+    box.style.left = Math.random() * (window.innerWidth - 80) + "px";
+    box.style.top = Math.random() * (window.innerHeight - 80) + "px";
+}
+
+box.onclick = function(){
+    box.style.background = renk();
+    move();
+}
+
+box.style.background = renk();
+move();
+<\/script>
+
+</body>
+</html>
+`;
+
+let blob = new Blob([oyunKodu], {type: "text/html"});
+let a = document.createElement("a");
+a.href = URL.createObjectURL(blob);
+a.download = name + ".html";
+a.click();
+}
+</script>
 
 </body>
 </html>
