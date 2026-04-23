@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>KEREGAMES</title>
+<title>KERE GAMES</title>
 
 <style>
 body {
@@ -106,112 +106,7 @@ h1 {
 </div>
 
 <script>
-function indir(<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<title>Oyun</title>
-
-<style>
-body {
-    margin: 0;
-    background: #111;
-    overflow: hidden;
-    font-family: Arial;
-    color: white;
-}
-
-/* ÜST BAR */
-.top {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    background: #1a1a1a;
-    padding: 10px;
-}
-
-/* KARE */
-#box {
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    cursor: pointer;
-    border-radius: 15px; /* 🔥 YUVARLAK KÖŞE */
-    transition: 0.1s;
-}
-</style>
-</head>
-
-<body>
-
-<div class="top">
-    <div>Skor: <span id="score">0</span></div>
-    <div>Seviye: <span id="level">1</span></div>
-</div>
-
-<div id="box"></div>
-
-<script>
-let box = document.getElementById("box");
-let scoreEl = document.getElementById("score");
-let levelEl = document.getElementById("level");
-
-let score = 0;
-let level = 1;
-
-/* SES */
-function playSound() {
-    try {
-        let ctx = new (window.AudioContext || window.webkitAudioContext)();
-        let osc = ctx.createOscillator();
-        osc.type = "square";
-        osc.frequency.value = 300 + level * 50;
-        osc.connect(ctx.destination);
-        osc.start();
-        setTimeout(() => {
-            osc.stop();
-            ctx.close();
-        }, 100);
-    } catch(e){}
-}
-
-/* RENK */
-function color() {
-    return "#" + Math.floor(Math.random()*16777215).toString(16);
-}
-
-/* HAREKET */
-function move() {
-    let size = 80;
-
-    box.style.left = Math.random() * (window.innerWidth - size) + "px";
-    box.style.top = Math.random() * (window.innerHeight - size) + "px";
-
-    box.style.background = color();
-}
-
-/* TIK */
-box.onclick = function() {
-    score++;
-    scoreEl.textContent = score;
-
-    if(score % 5 === 0){
-        level++;
-        levelEl.textContent = level;
-    }
-
-    playSound();
-    move();
-}
-
-/* BAŞLAT */
-window.onload = move;
-</script>
-
-</body>
-</html>) {
+function indir(name) {
 
 let oyunKodu = `
 <!DOCTYPE html>
