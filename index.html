@@ -8,79 +8,58 @@
 body {
     margin: 0;
     font-family: Arial;
-    background: #0f0f0f;
+    background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
     color: white;
 }
 
 /* HEADER */
 header {
     text-align: center;
-    padding: 30px;
-    background: #1a1a1a;
+    padding: 50px;
 }
 
 h1 {
+    font-size: 60px;
     color: #00ffcc;
 }
 
 /* AÇIKLAMA */
 .description {
     text-align: center;
-    padding: 20px;
+    font-size: 22px;
+    max-width: 800px;
+    margin: auto;
 }
 
 /* OYUNLAR */
 .games {
-    padding: 20px;
-    text-align: center;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
 .game-card {
     background: #1a1a1a;
-    padding: 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: inline-block;
-    margin: 10px;
-    transition: 0.2s;
+    padding: 25px;
+    border-radius: 15px;
+    transition: 0.3s;
 }
 
 .game-card:hover {
-    background: #222;
+    transform: scale(1.05);
 }
 
-/* OYUN EKRANI */
-#gameScreen {
-    display: none;
-}
-
-.top-bar {
-    display: flex;
-    justify-content: space-around;
-    background: #1a1a1a;
-    padding: 10px;
-}
-
-#gameArea {
-    position: relative;
-    width: 100%;
-    height: 85vh;
-}
-
-#box {
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    cursor: pointer;
-    border-radius: 10px;
-}
-
-/* GERİ BUTONU */
-.back {
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-    background: #222;
+/* BUTON */
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #00ffcc;
+    color: black;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
 }
 </style>
 </head>
@@ -93,7 +72,7 @@ h1 {
 
 <div class="description">
     <p>Burada göstereceğini kesinti, sonra benden GTA 6 yapmamı bekleme:</p>
-    <ul style="list-style:none; padding:0;">
+    <ul style="list-style:none;">
         <li>- 7/5/3/2 günde yapılan oyunlar.</li>
         <li>- Sadece videolar için geliştirilmiş özel oyunlar.</li>
         <li>- Toplulukla geliştirilmiş oyunlar.</li>
@@ -102,115 +81,32 @@ h1 {
 </div>
 
 <div class="games">
-    <div class="game-card" onclick="startGame(1)">🎮 Oyun 1</div>
-    <div class="game-card" onclick="startGame(2)">🎮 Oyun 2</div>
-    <div class="game-card" onclick="startGame(3)">🎮 Oyun 3</div>
-    <div class="game-card" onclick="startGame(4)">🎮 Oyun 4</div>
-</div>
 
-<!-- OYUN -->
-<div id="gameScreen">
-    <div class="back" onclick="goBack()">⬅ Menüye Dön</div>
-
-    <div class="top-bar">
-        <div>Skor: <span id="score">0</span></div>
-        <div>Seviye: <span id="level">1</span></div>
+    <div class="game-card">
+        <h2>Kare Kaçırma</h2>
+        <p>Refleks oyunu, kareyi yakala!</p>
+        <a class="btn" href="oyun1.html" download>⬇ HTML indir</a>
     </div>
 
-    <div id="gameArea">
-        <div id="box"></div>
+    <div class="game-card">
+        <h2>Hızlı Tıkla</h2>
+        <p>En hızlı kim tıklıyor?</p>
+        <a class="btn" href="oyun2.html" download>⬇ HTML indir</a>
     </div>
+
+    <div class="game-card">
+        <h2>Mini Challenge</h2>
+        <p>Küçülen hedefler!</p>
+        <a class="btn" href="oyun3.html" download>⬇ HTML indir</a>
+    </div>
+
+    <div class="game-card">
+        <h2>Impossible Click</h2>
+        <p>Sinir bozucu zor mod 😈</p>
+        <a class="btn" href="oyun4.html" download>⬇ HTML indir</a>
+    </div>
+
 </div>
-
-<script>
-let box = document.getElementById("box");
-let scoreEl = document.getElementById("score");
-let levelEl = document.getElementById("level");
-
-let score = 0;
-let level = 1;
-let currentGame = 1;
-
-/* OYUN BAŞLAT */
-function startGame(game) {
-    currentGame = game;
-
-    document.querySelector(".games").style.display = "none";
-    document.querySelector(".description").style.display = "none";
-    document.getElementById("gameScreen").style.display = "block";
-
-    score = 0;
-    level = 1;
-    scoreEl.textContent = score;
-    levelEl.textContent = level;
-
-    moveBox();
-}
-
-/* GERİ */
-function goBack() {
-    document.querySelector(".games").style.display = "block";
-    document.querySelector(".description").style.display = "block";
-    document.getElementById("gameScreen").style.display = "none";
-}
-
-/* SES */
-function playSound() {
-    try {
-        let ctx = new (window.AudioContext || window.webkitAudioContext)();
-        let osc = ctx.createOscillator();
-        osc.frequency.value = 300 + level * 40;
-        osc.connect(ctx.destination);
-        osc.start();
-        setTimeout(() => {
-            osc.stop();
-            ctx.close();
-        }, 100);
-    } catch(e){}
-}
-
-/* RENK */
-function randomColor() {
-    return "#" + Math.floor(Math.random()*16777215).toString(16);
-}
-
-/* HAREKET */
-function moveBox() {
-    let size = 80;
-
-    if(currentGame == 2) size = 60;
-    if(currentGame == 3) size = 50;
-    if(currentGame == 4) size = 40;
-
-    box.style.width = size + "px";
-    box.style.height = size + "px";
-
-    let maxX = window.innerWidth - size;
-    let maxY = window.innerHeight - size;
-
-    box.style.left = Math.random() * maxX + "px";
-    box.style.top = Math.random() * maxY + "px";
-
-    box.style.background = randomColor();
-}
-
-/* TIK */
-box.onclick = function() {
-    score++;
-    scoreEl.textContent = score;
-
-    if(score % 5 === 0){
-        level++;
-        levelEl.textContent = level;
-    }
-
-    moveBox();
-    playSound();
-};
-
-/* BAŞLANGIÇ */
-window.onload = moveBox;
-</script>
 
 </body>
 </html>
